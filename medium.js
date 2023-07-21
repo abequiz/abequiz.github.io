@@ -1,6 +1,6 @@
 const questions = [
     {
-        question: "What is a triple point of pure water?2. What is a triple point of pure water??",
+        question: "What is a triple point of pure water?",
         answers: [
             { text: "-0.19°C", correct: false},
             { text: "0.11°C", correct: false},
