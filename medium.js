@@ -9,7 +9,7 @@ const questions = [
         ]
     },
     {
-        question: "______________ of moisture measurement is based on chemical reactions.?",
+        question: "______________ of moisture measurement is based on chemical reactions.",
         answers: [
             { text: "Halogen drying", correct: false},
             { text: "Lyophilization", correct: false},
