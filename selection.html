@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Case Selection</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="selection.css">
+  <style>
+    /* Existing CSS styles */
+
+    /* Add new styles for the image section */
+    .image-section {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 30px;
+    }
+
+    .image-section img {
+      max-width: 100%;
+      border-radius: 10px;
+    }
+  </style>
+  <script>
+    function navigateToPage() {
+      var selectBox = document.getElementById("difficulty");
+      var selectedValue = selectBox.options[selectBox.selectedIndex].value;
+
+      switch(selectedValue) {
+        case "easy":
+          window.location.href = "easy.html";
+          break;
+        case "medium":
+          window.location.href = "medium.html";
+          break;
+        case "hard":
+          window.location.href = "hard.html";
+          break;
+        default:
+          alert("Invalid selection");
+      }
+    }
+  </script>
+</head>
+<body>
+  <div class="container">
+    <!-- New Image Section -->
+    <div class="image-section">
+      <img src="logo.png" alt="Logo">
+    </div>
+
+    <h1>Select Difficulty:</h1>
+    <div class="selection-container">
+      <select id="difficulty">
+        <option value="easy">Easy</option>
+        <option value="medium">Medium</option>
+        <option value="hard">Hard</option>
+      </select>
+      <button onclick="navigateToPage()">Go</button>
+    </div>
+  </div>
+</body>
+</html>
