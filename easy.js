@@ -43,7 +43,36 @@ const questions = [
             { text: "To crush the pieces", correct: true },
             { text: "To compress the pieces", correct: false },
         ]
+    },
+    {
+        "question": "It is the water retained about individual soil particles by molecular action and can be removed only by heating",
+        "answers": [
+            { "text": "Permanent wilting point", "correct": false },
+            { "text": "Hygroscopic water", "correct": true },
+            { "text": "Hydrophobic water", "correct": false },
+            { "text": "Microscopic water", "correct": false }
+        ]
+    },
+    {
+        "question": "A geologic formation that contains water into the field ditches",
+        "answers": [
+            { "text": "Aquifuge", "correct": true },
+            { "text": "Aquifer", "correct": false },
+            { "text": "Aquitard", "correct": false },
+            { "text": "Aquiclude", "correct": false }
+        ]
+    },
+    {
+        "question": "A geologic formation which transmits water at a rate insufficient to be economically developed for pumping",
+        "answers": [
+            { "text": "Aquifuge", "correct": false },
+            { "text": "Aquifer", "correct": false },
+            { "text": "Aquitard", "correct": false },
+            { "text": "Aquiclude", "correct": true }
+        ]
     }
+    
+    
 ];
 
 const questionElement = document.getElementById("question");
