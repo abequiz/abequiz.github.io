@@ -43,8 +43,106 @@ const questions = [
             { text: "True, True", correct: true},
             { text: "False, True", correct: false},
         ]
-    } 
-
+    },
+    {
+        question: "The discharge of the first emitter in a dropper line is 12 lph. What is the allowable minimum discharge in the last emitter?",
+        answers: [
+            { text: "9.6 lph", correct: true },
+            { text: "10.8 lph", correct: false },
+            { text: "10.6 lph", correct: false },
+            { text: "9.8 lph", correct: false }
+        ]
+    },
+    {
+        question: "The soil has a field capacity and permanent wilting point of 27% and 13%, respectively. What is the readily available moisture in cm of water per cm of soil if the bulk density is 1.25 g/cc?",
+        answers: [
+            { text: "10.25 cm/m", correct: false },
+            { text: "17.5 cm/m", correct: false },
+            { text: "13.12 cm/m", correct: true },
+            { text: "14.0 cm/m", correct: false }
+        ]
+    },
+    {
+        question: "What discharge can be expected from an unconfined well 200 mm in diameter if the drawdown is 5 m in an aquifer saturated to a depth of 18 m? Assume the permeability and the radius of influence to be 20 m/day and 150 m, respectively.",
+        answers: [
+            { text: "14.3 lps", correct: false },
+            { text: "13.8 lps", correct: false },
+            { text: "15.4 lps", correct: true },
+            { text: "2.61 lps", correct: false }
+        ]
+    },
+    {
+        question: "Determine the net application depth if the apparent specific gravity is 1.40 and the rooting depth is 0.8 m. Management allowable depletion is 50%.",
+        answers: [
+            { text: "44.8 cm", correct: false },
+            { text: "4.48 cm", correct: true },
+            { text: "448 cm", correct: false },
+            { text: "4.48 mm", correct: false }
+        ]
+    },
+    {
+        question: "A carrot refrigerator takes 5000 J of heat energy from the cold reservoir at 270 K and pumps it to the hot reservoir at 300 K. Calculate the coefficient of performance of this refrigerator.",
+        answers: [
+            { text: "10.9", correct: false },
+            { text: "9", correct: true },
+            { text: "11.90", correct: false },
+            { text: "9.10", correct: false }
+        ]
+    },
+    {
+        question: "A domestic food freezer maintains a temperature of -20 ℃. The ambient air temperature is 40 ℃. If heat leaks into the freezers at a continuous rate of 5.0 KJ/s, what is the least power to pump this heat out continuously?",
+        answers: [
+            { text: "1.18 KW", correct: true },
+            { text: "11.8 KW", correct: false },
+            { text: "18.1 KW", correct: false },
+            { text: "1.81 KW", correct: false }
+        ]
+    },
+    {
+        question: "A refrigerator uses 1500 J of mechanical work to absorb 4500 J from the cold reservoir at 250 K. The hot reservoir is at 300 K. Calculate the coefficient of performance for this refrigerator.",
+        answers: [
+            { text: "6 J", correct: false },
+            { text: "60 J", correct: false },
+            { text: "600 J", correct: false },
+            { text: "6000 J", correct: true }
+        ]
+    },
+    {
+        question: "A pulley has a constant angular acceleration of 3 rad/sec². When the angular velocity is 2 rad/sec, the total acceleration of a point on the rim of the pulley is 10 ft/sec². Compute the diameter of the pulley.",
+        answers: [
+            { text: "2 ft", correct: false },
+            { text: "3 ft", correct: false },
+            { text: "4 ft", correct: true },
+            { text: "5 ft", correct: false }
+        ]
+    },
+    {
+        question: "A truck is traveling forward at 25 m/s. The truck bed is loaded with boxes, whose coefficient of friction with the bed is 0.4. What is the shortest time that the truck can be brought to a stop such that the boxes do not shift?",
+        answers: [
+            { text: "6.4 sec", correct: true },
+            { text: "6.0 sec", correct: false },
+            { text: "10.4 sec", correct: false },
+            { text: "22.4 sec", correct: false }
+        ]
+    },
+    {
+        question: "Using a constant angular acceleration, a water turbine is brought to its normal operating speed of 180 rpm in 6 minutes. How many complete revolutions did the turbine make in coming to normal speed?",
+        answers: [
+            { text: "240 rev", correct: false },
+            { text: "540 rev", correct: true },
+            { text: "245 rev", correct: false },
+            { text: "640 rev", correct: false }
+        ]
+    },
+    {
+        question: "During the operation of a punch press, its flywheel decelerates uniformly from 400 rpm to 200 rpm in 1 sec. The rim of the flywheel weighs 1288 lb, its inside and outside diameters are 56 in and 60 in, and it is attached to its hub by 6 spokes. What average shearing force is developed between the rim and each spoke during the 1 sec interval?",
+        answers: [
+            { text: "F = 350 lb", correct: true },
+            { text: "F = 250 lb", correct: false },
+            { text: "F = 400 lb", correct: false },
+            { text: "F = 500 lb", correct: false }
+        ]
+    }     
 ];
 
 const questionElement = document.getElementById("question");
