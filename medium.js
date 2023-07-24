@@ -315,89 +315,142 @@ const questions = [
         ]
     }  
 ];
-
 const questionElement = document.getElementById("question");
 const answerButtons = document.getElementById("answer-buttons");
 const nextButton = document.getElementById("next-btn");
+const timerDisplay = document.getElementById("timer-display");
+const startButton = document.getElementById("start-btn");
 
 let currentQuestionIndex = 0;
 let score = 0;
+let timerInterval;
+const maxTime = 60;
+let remainingTime = maxTime;
+
+function updateTimer() {
+  if (remainingTime <= 0) {
+    // Automatically move to the next question if time runs out
+    selectAnswer({ target: null });
+  } else {
+    remainingTime--;
+    const formattedTime = formatTime(remainingTime * 1000); // Convert to milliseconds
+    timerDisplay.textContent = formattedTime;
+  }
+}
+
+function formatTime(milliseconds) {
+  const minutes = Math.floor(milliseconds / 60000);
+  const seconds = Math.floor((milliseconds % 60000) / 1000);
+  const formattedMinutes = String(minutes).padStart(2, '0');
+  const formattedSeconds = String(seconds).padStart(2, '0');
+  return `${formattedMinutes}:${formattedSeconds}`;
+}
+
+function startTimer() {
+  remainingTime = maxTime;
+  updateTimer();
+  timerInterval = setInterval(updateTimer, 1000);
+}
+
+function stopTimer() {
+  clearInterval(timerInterval);
+}
 
 function startQuiz() {
-    currentQuestionIndex = 0;
-    score = 0;
-    nextButton.innerHTML = "Next";
-    showQuestion();
+  currentQuestionIndex = 0;
+  score = 0;
+  nextButton.innerHTML = "Next";
+  showQuestion();
+  startTimer(); // Start the timer when the quiz starts
+  startButton.disabled = true; // Disable the "Start Quiz" button after starting
+  startButton.style.display = "none"; 
 }
 
 function showQuestion() {
-    resetState();
-    let currentQuestion = questions[currentQuestionIndex];
-    let questionNo = currentQuestionIndex + 1;
-    questionElement.innerHTML = questionNo + ". " + currentQuestion.question;
+  resetState();
+  let currentQuestion = questions[currentQuestionIndex];
+  let questionNo = currentQuestionIndex + 1;
+  questionElement.innerHTML = questionNo + ". " + currentQuestion.question;
 
-    currentQuestion.answers.forEach(answer => {
-        const button = document.createElement("button");
-        button.innerHTML = answer.text;
-        button.classList.add("btn");
-        answerButtons.appendChild(button);
-        if (answer.correct) {
-            button.dataset.correct = answer.correct;
-        }
-        button.addEventListener("click", selectAnswer);
-    });
+  currentQuestion.answers.forEach(answer => {
+    const button = document.createElement("button");
+    button.innerHTML = answer.text;
+    button.classList.add("btn");
+    answerButtons.appendChild(button);
+    if (answer.correct) {
+      button.dataset.correct = answer.correct;
+    }
+    button.addEventListener("click", selectAnswer);
+  });
 }
 
 function resetState() {
-    nextButton.style.display = "none";
-    while (answerButtons.firstChild) {
-        answerButtons.removeChild(answerButtons.firstChild);
-    }
+  nextButton.style.display = "none";
+  while (answerButtons.firstChild) {
+    answerButtons.removeChild(answerButtons.firstChild);
+  }
 }
 
 function selectAnswer(e) {
-    const selectedBtn = e.target;
-    const isCorrect = selectedBtn.dataset.correct === "true";
-    if (isCorrect) {
-        selectedBtn.classList.add("correct");
-        score++;
-    } else {
-        selectedBtn.classList.add("incorrect");
-    }
+  if (remainingTime <= 0) {
+    // If the time runs out, automatically mark the answer as incorrect
     Array.from(answerButtons.children).forEach(button => {
-        if (button.dataset.correct === "true") {
-            button.classList.add("correct");
-        }
-        button.disabled = true;
+      if (button.dataset.correct === "true") {
+        button.classList.add("correct");
+      }
+      button.disabled = true;
     });
-    nextButton.style.display = "block";
+  } else {
+    const selectedBtn = e.target;
+    const isCorrect = selectedBtn && selectedBtn.dataset.correct === "true";
+
+    if (isCorrect) {
+      selectedBtn.classList.add("correct");
+      score++;
+    } else if (selectedBtn) {
+      selectedBtn.classList.add("incorrect");
+    }
+
+    Array.from(answerButtons.children).forEach(button => {
+      if (button.dataset.correct === "true") {
+        button.classList.add("correct");
+      }
+      button.disabled = true;
+    });
+  }
+
+  nextButton.style.display = "block";
+  stopTimer();
 }
 
 function showScore() {
-    resetState();
-    questionElement.innerHTML = `You scored ${score*2} out of ${questions.length*2}!`;
-    nextButton.innerHTML = "Play Again";
-    nextButton.style.display = "block";
-    nextButton.addEventListener("click", function () {
-        window.location.href = "selection.html";
-    });
+  resetState();
+  questionElement.innerHTML = `You scored ${score} out of ${questions.length}!`;
+  nextButton.innerHTML = "Play Again";
+  nextButton.style.display = "block";
+  nextButton.addEventListener("click", function () {
+    window.location.href = "selection.html";
+  });
 }
 
 function handleNextButton() {
-    currentQuestionIndex++;
-    if (currentQuestionIndex < questions.length) {
-        showQuestion();
-    } else {
-        showScore();
-    }
+  currentQuestionIndex++;
+  if (currentQuestionIndex < questions.length) {
+    showQuestion();
+    startTimer(); // Start the timer for the next question
+  } else {
+    showScore();
+  }
 }
 
 nextButton.addEventListener("click", () => {
-    if (currentQuestionIndex < questions.length) {
-        handleNextButton();
-    } else {
-        startQuiz();
-    }
+  if (currentQuestionIndex < questions.length) {
+    handleNextButton();
+  } else {
+    startQuiz();
+  }
 });
 
-startQuiz();
+startButton.addEventListener("click", () => {
+  startQuiz(); // Start the quiz and the timer when the "Start Quiz" button is clicked
+});

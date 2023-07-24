@@ -6,19 +6,23 @@
   <link rel="stylesheet" href="medium.css">
 </head>
 <body>
-<div class="app">
-  <h1>Medium Quiz (2 points each)</h1>
-  <div class="quiz">
-    <h2 id="question">Question goes here</h2>
-    <div id="answer-buttons">
-      <button class="btn">Answer 1</button>
-      <button class="btn">Answer 2</button>
-      <button class="btn">Answer 3</button>
-      <button class="btn">Answer 4</button>
+  <div class="app">
+    <h1>Medium Quiz (2 points each)</h1>
+    <div class="quiz">
+      <h2 id="question">PLEASE CLICK START QUIZ. YOU GOT A 1 MIN PER ITEM, GOODLUCK!!!</h2>
+      <div id="answer-buttons">
+        <button class="btn">Answer A</button>
+        <button class="btn">Answer B</button>
+        <button class="btn">Answer C</button>
+        <button class="btn">Answer D</button>
+      </div>
+      <button id="next-btn" class="btn">Next</button>
     </div>
-    <button id="next-btn">Next</button>
+    <div id="timer-container">
+      <span id="timer-display">00:00</span>
+    </div>
+    <button id="start-btn" class="btn">Start Quiz</button>
   </div>
-</div>
-<script src="medium.js"></script>
+  <script src="medium.js"></script>
 </body>
 </html>
