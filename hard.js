@@ -154,7 +154,7 @@ const startButton = document.getElementById("start-btn");
 let currentQuestionIndex = 0;
 let score = 0;
 let timerInterval;
-const maxTime = 300;
+const maxTime = 180; // 2 minutes in seconds
 let remainingTime = maxTime;
 
 function updateTimer() {
@@ -186,6 +186,14 @@ function stopTimer() {
   clearInterval(timerInterval);
 }
 
+function showTimer() {
+  timerDisplay.style.display = "block";
+}
+
+function hideTimer() {
+  timerDisplay.style.display = "none";
+}
+
 function startQuiz() {
   currentQuestionIndex = 0;
   score = 0;
@@ -193,7 +201,8 @@ function startQuiz() {
   showQuestion();
   startTimer(); // Start the timer when the quiz starts
   startButton.disabled = true; // Disable the "Start Quiz" button after starting
-  startButton.style.display = "none"; 
+  startButton.style.display = "none"; // Hide the "Start Quiz" button after starting
+  showTimer(); // Show the timer when the quiz starts
 }
 
 function showQuestion() {
@@ -255,6 +264,7 @@ function selectAnswer(e) {
 
 function showScore() {
   resetState();
+  hideTimer(); // Hide the timer when showing the score
   questionElement.innerHTML = `You scored ${score*5} out of ${questions.length*5}!`;
   nextButton.innerHTML = "Play Again";
   nextButton.style.display = "block";
@@ -268,6 +278,7 @@ function handleNextButton() {
   if (currentQuestionIndex < questions.length) {
     showQuestion();
     startTimer(); // Start the timer for the next question
+    showTimer(); // Show the timer for the next question
   } else {
     showScore();
   }
