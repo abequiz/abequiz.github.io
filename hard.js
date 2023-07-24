@@ -255,7 +255,7 @@ function selectAnswer(e) {
 
 function showScore() {
   resetState();
-  questionElement.innerHTML = `You scored ${score} out of ${questions.length}!`;
+  questionElement.innerHTML = `You scored ${score*5} out of ${questions.length*5}!`;
   nextButton.innerHTML = "Play Again";
   nextButton.style.display = "block";
   nextButton.addEventListener("click", function () {
